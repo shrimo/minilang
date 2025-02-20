@@ -1,0 +1,3 @@
+// MiniLang sample code:
+let message = "Hello, World!";
+print message;

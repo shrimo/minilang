@@ -1,0 +1,8 @@
+// Read content from "input.txt" and print it.
+// Then write the same content to "output.txt" and confirm the write.
+
+let content = readFile("input.txt");
+print content;
+
+writeFile("output.txt", content);
+print "Content written to output.txt";

@@ -1,0 +1,73 @@
+// SnakeGame.minilang
+// A simplified text-based Snake game implemented in MiniLang.
+// This example assumes that the MiniLang runtime provides built-in functions
+// such as sleep(milliseconds) for delaying execution.
+
+class SnakeGame {
+    // Game state variables.
+    let snakeX = 10;
+    let snakeY = 10;
+    let foodX = 5;
+    let foodY = 8;
+    let direction = "RIGHT";
+    let gameOver = false;
+
+    // Update the game state: move the snake and check collisions.
+    function update() {
+        if (direction == "UP") {
+            snakeY := snakeY - 1;
+        } else if (direction == "DOWN") {
+            snakeY := snakeY + 1;
+        } else if (direction == "LEFT") {
+            snakeX := snakeX - 1;
+        } else if (direction == "RIGHT") {
+            snakeX := snakeX + 1;
+        }
+        
+        // Check boundaries (assuming grid size of 20x20).
+        if (snakeX < 0 or snakeX >= 20 or snakeY < 0 or snakeY >= 20) {
+            gameOver := true;
+        }
+        
+        // Check if the snake has eaten the food.
+        if (snakeX == foodX and snakeY == foodY) {
+            // Reposition the food.
+            foodX := (foodX + 3) % 20;
+            foodY := (foodY + 5) % 20;
+        }
+    }
+
+    // Render the current game state.
+    function draw() {
+        print "Snake Position: " + snakeX + ", " + snakeY;
+        print "Food Position: " + foodX + ", " + foodY;
+        if (gameOver) {
+            print "Game Over!";
+        }
+        print "----------------------";
+    }
+
+    // Handle key input to change direction.
+    function onKey(key) {
+        if (key == "w" and direction != "DOWN") {
+            direction := "UP";
+        } else if (key == "s" and direction != "UP") {
+            direction := "DOWN";
+        } else if (key == "a" and direction != "RIGHT") {
+            direction := "LEFT";
+        } else if (key == "d" and direction != "LEFT") {
+            direction := "RIGHT";
+        }
+    }
+}
+
+// Create a game instance.
+let game = new SnakeGame();
+
+// Main game loop: update game state, draw the game, then delay.
+while (game.gameOver == false) {
+    game.update();
+    game.draw();
+    // Pause execution for 500 milliseconds.
+    sleep(500);
+}

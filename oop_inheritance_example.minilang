@@ -1,0 +1,39 @@
+// This example assumes MiniLang supports inheritance via the "extends" keyword.
+
+// Base class: Animal
+class Animal {
+    // Field declaration.
+    let name = "Unnamed";
+
+    // Method to set the name.
+    function setName(newName) {
+        name = newName;
+        return name;
+    }
+
+    // Method to greet.
+    function greet() {
+        return "Hello, I'm an animal named " + name;
+    }
+}
+
+// Subclass: Dog extends Animal
+class Dog extends Animal {
+    // Override the greet method.
+    function greet() {
+        return "Woof! I'm " + name;
+    }
+
+    // Additional method unique to Dog.
+    function bark() {
+        return "Woof!";
+    }
+}
+
+// Main program.
+// Create an instance of Dog and use inherited and overridden methods.
+let d = new Dog();
+print d.greet();         // Expected output: "Woof! I'm Unnamed"
+print d.setName("Buddy");  // Sets name to "Buddy" and returns "Buddy"
+print d.greet();         // Expected output: "Woof! I'm Buddy"
+print d.bark();          // Expected output: "Woof!"

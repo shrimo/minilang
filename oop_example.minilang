@@ -1,0 +1,28 @@
+// Define a class "Person" with a field "name" and methods "setName" and "greet".
+class Person {
+    // Field declaration. The initializer is a string so it will become a std::string.
+    let name = "Unknown";
+
+    // Method to set the name.
+    function setName(newName) {
+        name = newName;
+        return name;
+    }
+
+    // Method to greet using the name.
+    function greet() {
+        return "Hello, " + name;
+    }
+}
+
+// Create an instance of Person.
+let p = new Person();
+
+// Call the greet method and print the output.
+print p.greet();
+
+// Change the name using setName and print the returned name.
+print p.setName("Alice");
+
+// Call greet again to see the updated name.
+print p.greet();
